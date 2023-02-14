@@ -77,9 +77,16 @@ if (!$authorized) {
 							<?php } ?>
 					</p>
 					<?php if ($getBirthDate) { ?>
-						<p><?= getCurrentUser() ?>, До Вашего дня рождения: </p>
-						<p> <span class="stocks-list__item_timer"><?= "{$dayLeftString} {$message}" ?></span></p>
-					<?php } ?>
+						<h2 class="auth-user-content__subtitle subtitle_small">
+							<?php if ($daysLeft == 365 || $daysLeft == 0) { ?>
+								<span><?= getCurrentUser() ?></span>, поздравляем Вас с днём рождения! Дарим скидку 5%!
+							<?php } else { ?>
+								<span><?= getCurrentUser() ?></span>, до Вашего дня рождения:
+								<span> <?= "{$dayLeftString} {$message}" ?> </span>
+						</h2>
+				<?php }
+						}
+				?>
 				</section>
 			</article>
 		</main>
