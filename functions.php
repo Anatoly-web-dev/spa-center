@@ -173,16 +173,20 @@ function getDaysBirthDayRemaining() {
 }
 
 $daysLeft = getDaysBirthDayRemaining();
-
 $dayLeftString = (string)(getDaysBirthDayRemaining());
+$daysLeftLastIndex = strlen($dayLeftString) - 1;
 if (($dayLeftString == '11') || ($dayLeftString == '12') || ($dayLeftString == '13') || ($dayLeftString == '14')) {
 	$message = 'дней';
 } elseif ((int)$dayLeftString % 10 == 0) {
 	$message = 'дней';
-} elseif (str_contains($dayLeftString, '2') || str_contains($dayLeftString, '3') || str_contains($dayLeftString, '4')) {
-	$message = 'дня';
-} else if ($dayLeftString == '1') {
+} elseif (str_contains($dayLeftString[$daysLeftLastIndex], '1')) {
 	$message = 'день';
+} elseif (
+	str_contains($dayLeftString[$daysLeftLastIndex], '2') ||
+	str_contains($dayLeftString[$daysLeftLastIndex], '3') ||
+	str_contains($dayLeftString[$daysLeftLastIndex], '4')
+) {
+	$message = 'дня';
 } else {
 	$message = 'дней';
 }
